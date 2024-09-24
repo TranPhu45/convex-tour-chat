@@ -3,6 +3,8 @@ import { Authenticated, Unauthenticated, useQuery } from "convex/react";
 import { api } from "../convex/_generated/api";
 
 function App() {
+  console.log("App component is rendering");
+  
   return (
     <main>
       <Unauthenticated>
