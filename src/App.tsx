@@ -4,7 +4,7 @@ import { api } from "../convex/_generated/api";
 
 function App() {
   console.log("App component is rendering");
-  
+
   return (
     <main>
       <Unauthenticated>
@@ -20,10 +20,10 @@ function App() {
 
 function Content() {
   const messages = useQuery(api.messages.getForCurrentUser);
-  console.log("Messages fetched: ", messages);
+  console.log("Fetched messages: ", messages);
 
-  if (!messages) {
-    return <div>No messages found or failed to fetch messages</div>;
+  if (!messages || messages.length === 0) {
+    return <div>No messages available for the current user.</div>;
   }
 
   return <div>Authenticated content: {messages.length}</div>;
