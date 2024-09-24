@@ -5,6 +5,7 @@ export default defineSchema({
   messages: defineTable({
     author: v.string(),
     body: v.string(),
+    creationTime: v.optional(v.number()), // Make creationTime optional
   }),
   likes: defineTable({
     liker: v.string(),
