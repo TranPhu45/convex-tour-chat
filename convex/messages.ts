@@ -34,11 +34,15 @@ export const send = mutation({
   args: { body: v.string(), author: v.string() },
   handler: async (ctx, args) => {
     const { body, author } = args;
-    // Send a new message.
-    await ctx.db.insert("messages", { body, author });
+    // Insert a new message with creationTime
+    await ctx.db.insert("messages", {
+      body,
+      author,
+      creationTime: Date.now(), // Add the creationTime field here
+    });
 
     if (body.startsWith("@ai") && author !== "AI") {
-      // Schedule the chat action to run immediately
+      // Schedule the AI response
       await ctx.scheduler.runAfter(0, api.ai.chat, {
         messageBody: body,
       });
