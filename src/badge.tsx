@@ -1,9 +1,15 @@
+import React from "react";
 import { useUser } from "@clerk/clerk-react";
 
-export default function Badge() {
+const Badge: React.FC = () => {
   const { user } = useUser();
-  if (!user) {
-    return <span>Not logged in</span>;
-  }
-  return <span>Logged in as {user.fullName}</span>;
-}
+
+  if (!user) return null;
+
+  // Separate the message for clarity
+  const displayName = user?.fullName || "Unknown User";
+  
+  return <span>Logged in as {displayName}</span>;
+};
+
+export default Badge;
